@@ -121,9 +121,9 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 2. In the side menu, click API Keys, then Create New Secret Key in the top-right. Name, project, and expiration are up to you; make sure Permissions are set to All. NOTE: You'll need to have billing set up and at least a few dollars added to your account.
 3. Click Create Secret Key. **Paste this into your Excel spreadsheet next to `OPENAI_API_KEY`.** NOTE: Once you close this window, you WILL NOT be able to view this secret key again. 
 
-## 6. Edit index.html (connects this repo to your study-specific information)
+## 6. Edit `index.html` (connects this repo to your study-specific information)
 
-1. 
+1. Open index.html
 
 ## 3. Vercel (puts it on the internet)
 
