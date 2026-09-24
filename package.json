@@ -1,5 +1,5 @@
 {
-  "name": "hpl-study-prototype",
+  "name": "hpl-study-LB-template",
   "version": "1.0.0",
   "private": true,
   "description": "Harvard HPL AI study — Vercel-hosted static + serverless OpenAI proxy.",
