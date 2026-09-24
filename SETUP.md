@@ -57,25 +57,59 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 
 1. Make an account at https://dataverse.harvard.edu/ (Harvard Dataverse).
 2. Create a "Dataverse" (Add Data > New Dataverse)
-      - `HOST DATAVERSE`: Keep as "Harvard Dataverse"
-      - `DATAVERSE NAME`: Whatever you want the title of this research project to be
+      - **Host Dataverse**: Keep as "Harvard Dataverse"
+      - **Dataverse Name**: Whatever you want the title of this research project to be
         (e.g., "Lonnie's HPL Study Clone")
-      - `DATAVERSE_COLLECTION_ALIAS`: The "short-title" that gets appended to the end of
-        this Datavers's URL. NOTE: You will need this when setting up your DataPipe experiments
-        in the next step
-      - `CATEGORY`: Research Project
+      - **Identifier**: The "short-title" that gets appended to the end of
+        this Datavers's URL (e.g., "hpl-study-lb"). NOTE: You will need this when
+        setting up your DataPipe experiments in the next step.
+      - **Category**: Research Project
    Everything else is optional and can be left blank or as-is.
 
 3. Create an API Token on Dataverse (click your username the top-right > API Token > Create Token). **Paste this into your Excel spreadsheet next to `DATAVERSE_API`.**
 
 ## 4. DataPipe (the intermediary between the study and Dataverse)
 
-1. Make an account at https://pipe.jspsych.org (DataPipe).
-4. In DataPipe, create an experiment linked to your OSF project. Copy its
+1. Make an account at https://pipe.jspsych.org (DataPipe), using
+   whatever sign-in method you prefer (email, Google, GitHub, etc.).
+3. Link your DataPipe account to Dataverse (Account > Settings > Dataverse > Connect)
+     - **Dataverse Server URL***: https://dataverse.harvard.edu/
+     - **API Token**: The value you pasted in your Excel spreadsheet under `DATAVERSE_API`.
+       (Can also be re-accessed on your Dataverse account, though you should not need this
+       token again after this point.)
+4. In DataPipe, create **FOUR unique experiments**:
+      1. **Main**: For the primary .json output from the study.
+      2.  **Consents**: For consent form PDFs.
+      3.  **Emails**: For email .json files, to prevent duplicate participants.
+      4.  **XLSX**: For the .xlsx files of each participant's data.
+
+   Create each experiment in the following way:
+     - **Title**: An informative study title (e.g., "Lonnie's HPL Study Clone - Consents").
+       NOTE: When you create an experiment in DataPipe, it will automatically create a
+       collection in Dataverse with the same title that you set here.
+     - **Collection alias**: The "Identifier" you chose when setting up your
+       Dataverse in the previous step.
+
+   Everything else should be self-explanatory (e.g. name, email, etc.).
+
+5. Configure the four DataPipe experiments:
+     - For your "Main" experiment:
+         - Turn on "Accept new data"
+         - Turn on "Validation"
+         - Check "Allow JSON" and "Allow CSV"
+         - Make sure the "Required fields" field is empty
+     - For your other three experiments:
+         - Turn on "Accept new data"
+         - Turn on "Accept base64 file uploads"
+         - Turn OFF "Validation"
+      
+   No other changes should be required here.
+
+6. Once all four experiments are created, 
    experiment ID (short code like aB3xY9zQwK).
-5. Create a **second** experiment for consent PDFs, also linked to your OSF project,
+7. Create a **second** experiment for consent PDFs, also linked to your OSF project,
    and turn on "Enable base64 data collection" on its dashboard. Copy that ID too.
-6. In `index.html`, search for REPLACE_WITH and paste the first ID over
+8. In `index.html`, search for REPLACE_WITH and paste the first ID over
    REPLACE_WITH_YOUR_DATAPIPE_ID and the second over REPLACE_WITH_CONSENT_DATAPIPE_ID.
 
 Until you do step 5 the app still runs, it just keeps completed sessions in the
