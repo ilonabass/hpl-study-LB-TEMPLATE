@@ -4,15 +4,21 @@ The code in this repo is complete but not connected to anything yet. You need th
 free accounts (Firebase, Vercel, DataPipe/Dataverse), an OpenAI API key with a few dollars
 loaded onto it, and about an hour of time. Here's the order that works best.
 
+First, copy this GitHub template (Use this template > Create a new repository). Then follow the steps below.
+
 ## 1. Create a temporary local file for storing keys
 
 Create an Excel file with the following values in the first column:
    - `FIREBASE_SERVICE_ACCOUNT_BASE64`
    - `FIREBASE_DATABASE_URL`
-   - `DATAVERSE_API`
    - `OPENAI_API_KEY`
    - `TOKEN_SECRET`
-
+   - `DATAVERSE_API_TOKEN`
+   - `DATAPIPE MAIN EXPERIMENT ID`
+   - `DATAPIPE CONSENT EXPERIMENT ID`
+   - `DATAPIPE XLSX EXPERIMENT ID`
+   - `DATAPIPE EMAIL EXPERIMENT ID`
+   
 This is just for keeping track of these values temporarily as they're generated.
 DO NOT EVER upload / share these values anywhere else.
 
@@ -42,7 +48,7 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 ```
    Then publish.
    
-4. Gear icon -> Project settings -> Service accounts -> Generate new private key.
+4. Download a private key for the project (Gear icon > Project settings > Service accounts > Generate new private key).
    This will download a .json file. 
 5. Turn that file into one long line of text. On a Mac:
    `base64 -i ~/Downloads/yourfile.json | pbcopy` (this "converts" the entire contents 
@@ -66,7 +72,7 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
       - **Category**: Research Project
    Everything else is optional and can be left blank or as-is.
 
-3. Create an API Token on Dataverse (click your username the top-right > API Token > Create Token). **Paste this into your Excel spreadsheet next to `DATAVERSE_API`.**
+3. Create an API Token on Dataverse (click your username the top-right > API Token > Create Token). **Paste this into your Excel spreadsheet next to `DATAVERSE_API_TOKEN`.**
 
 ## 4. DataPipe (the intermediary between the study and Dataverse)
 
@@ -74,11 +80,11 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
    whatever sign-in method you prefer (email, Google, GitHub, etc.).
 3. Link your DataPipe account to Dataverse (Account > Settings > Dataverse > Connect)
      - **Dataverse Server URL***: https://dataverse.harvard.edu/
-     - **API Token**: The value you pasted in your Excel spreadsheet under `DATAVERSE_API`.
+     - **API Token**: The value you pasted in your Excel spreadsheet under `DATAVERSE_API_TOKEN`.
        (Can also be re-accessed on your Dataverse account, though you should not need this
        token again after this point.)
 4. In DataPipe, create **FOUR unique experiments**:
-      1. **Main**: For the primary .json output from the study.
+      1.  **Main**: For the primary .json output from the study.
       2.  **Consents**: For consent form PDFs.
       3.  **Emails**: For email .json files, to prevent duplicate participants.
       4.  **XLSX**: For the .xlsx files of each participant's data.
@@ -105,15 +111,19 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
       
    No other changes should be required here.
 
-6. Once all four experiments are created, 
-   experiment ID (short code like aB3xY9zQwK).
-7. Create a **second** experiment for consent PDFs, also linked to your OSF project,
-   and turn on "Enable base64 data collection" on its dashboard. Copy that ID too.
-8. In `index.html`, search for REPLACE_WITH and paste the first ID over
-   REPLACE_WITH_YOUR_DATAPIPE_ID and the second over REPLACE_WITH_CONSENT_DATAPIPE_ID.
+6. Once all four experiments are created, locate their experiment IDs (under "Experiment details"
+   for each experiment -- should be a short code like hz6pAcxZd4Xd).
+   **Paste each experiment ID into your Excel spreadsheet next to the corresponding `EXPERIMENT ID` label.**
 
-Until you do step 5 the app still runs, it just keeps completed sessions in the
-browser's localStorage instead of uploading them.
+## 5. OpenAI (enables chatbot access)
+
+1. Log in or make an account at https://platform.openai.com
+2. In the side menu, click API Keys, then Create New Secret Key in the top-right. Name, project, and expiration are up to you; make sure Permissions are set to All. NOTE: You'll need to have billing set up and at least a few dollars added to your account.
+3. Click Create Secret Key. **Paste this into your Excel spreadsheet next to `OPENAI_API_KEY`.** NOTE: Once you close this window, you WILL NOT be able to view this secret key again. 
+
+## 6. Edit index.html (connects this repo to your study-specific information)
+
+1. 
 
 ## 3. Vercel (puts it on the internet)
 
