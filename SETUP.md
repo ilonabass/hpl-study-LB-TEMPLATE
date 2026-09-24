@@ -12,7 +12,6 @@ Create an Excel file with the following values in the first column:
    - `FIREBASE_SERVICE_ACCOUNT_BASE64`
    - `FIREBASE_DATABASE_URL`
    - `OPENAI_API_KEY`
-   - `TOKEN_SECRET`
    - `DATAVERSE_API_TOKEN`
    - `DATAPIPE MAIN EXPERIMENT ID`
    - `DATAPIPE CONSENT EXPERIMENT ID`
@@ -124,42 +123,47 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 ## 6. Edit `index.html` (connects this repo to your study-specific information)
 
 In the `index.html` file in your copy of this repo, replace the following values:
--  `[REPLACE ME! Researcher Name]`: Replace with your first and last name. Occurs 5 times.
--  `[REPLACE ME! Researcher Name]`: Replace with your email address Occurs 7 times.
+-  `[REPLACE ME! Researcher Name]`: Replace with your first and last name (e.g. "Ilona Bass"). Occurs 5 times.
+-  `[REPLACE ME! Researcher Email]`: Replace with your email address (e.g. "ibass@fas.harvard.edu"). Occurs 7 times.
 -  `[REPLACE ME! Firebase URL]`: Replace with the URL in your Excel spreadsheet next to `FIREBASE_DATABASE_URL`. **Make sure there's no "/" at the end!** Occurs 1 time.
--  `[REPLACE ME! Datapipe Main Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE MAIN EXPERIMENT ID`. Occurs 1 time-  `[REPLACE ME! Datapipe Consent Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE CONSENT EXPERIMENT ID`. Occurs 1 time-  `[REPLACE ME! Datapipe XLSX Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE XLSX EXPERIMENT ID`. Occurs 1 time-  `[REPLACE ME! Datapipe Email Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE EMAIL EXPERIMENT ID`. Occurs 1 time.
+-  `[REPLACE ME! Datapipe Main Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE MAIN EXPERIMENT ID`. Occurs 1 time
+-  `[REPLACE ME! Datapipe Consent Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE CONSENT EXPERIMENT ID`. Occurs 1 time
+-  `[REPLACE ME! Datapipe XLSX Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE XLSX EXPERIMENT ID`. Occurs 1 time.
+-  `[REPLACE ME! Datapipe Email Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE EMAIL EXPERIMENT ID`. Occurs 1 time.
 
 For all of these, replace the entire bracketed string, including the brackets themselves.
 
-## 3. Vercel (puts it on the internet)
+Once you've made all of these replacements, commit changes.
 
-1. Make an account at https://vercel.com with "Continue with GitHub".
-2. Add New -> Project -> import this repo. Don't change any build settings.
-3. Before hitting Deploy, add these environment variables:
+## 7. Vercel (puts it on the internet)
 
-   - `OPENAI_API_KEY` - from https://platform.openai.com (API keys page, needs
-     billing set up, a few dollars is plenty)
-   - `FIREBASE_SERVICE_ACCOUNT_BASE64` - the long line from Firebase step 5
-   - `FIREBASE_DATABASE_URL` - the URL from Firebase step 6
-   - `TOKEN_SECRET` - any random string, 32+ characters, you never need to
-     remember it
+1. Make an account at https://vercel.com with "Continue with GitHub". Link the GitHub account the houses this repo.
+2. Add New -> Project -> import this repo. Because this repo is private, you may have to click "Adjust GitHub App Permissions" and expressly allow access to this repo. Do not change any build settings for the project on Vercel.
+4. Before hitting Deploy, add these environment variables (should be logged in your Excel spreadsheet):
+
+   - `FIREBASE_SERVICE_ACCOUNT_BASE64` - a super long string
+   - `FIREBASE_DATABASE_URL` - the Firebase URL
+   - `OPENAI_API_KEY` - the OpenAI API secret key
+   - `TOKEN_SECRET` - any random string, 32+ characters (you never need to
+     remember it)
 
    There are also a few optional ones you probably won't need: `ALLOWED_ORIGINS`
    (only if another domain needs to call the API), `PER_IP_TOKEN_LIMIT` (default
    15 tokens per IP per hour) and `PER_TOKEN_CALL_LIMIT` (default 500 calls per
    session).
 
-4. Deploy. You get a live URL like https://something.vercel.app after a minute.
+5. Deploy. You get a live URL like https://something.vercel.app after a minute.
    Every git push after this redeploys automatically.
 
-## 4. Check it works
+## 8. Check it works
 
 Open your URL and run through the whole study once like a participant. Then check:
-your Firebase Data tab should show a participant counter and session data, and your
-OSF project should have a JSON data file and a consent PDF in it. If both are there,
-you're done.
+your Firebase Data tab should show a participant counter and session data, and each of your four 
+Dataverse collections should have one new file in them. If everything is there, you're done!
 
-Tip: add `?researcher=hpl-staff` to the URL to get the researcher panel for faster
-clicking around while testing. Before collecting real data, delete your test entries
-from the Firebase Data tab (hover a node, three dots, delete) and the test files
-from OSF.
+NOTE: DataPipe is sometimes slow to send data to Dataverse. If you still don't see anything after a day or so, try disconnecting and re-connecting DataPipe and Dataverse using a freshly generated Dataverse API Token. 
+
+TIP: add `?researcher=hpl-staff` to the URL to get the researcher panel for faster
+clicking around while testing. The researcher view will not upload data to DataPipe/Dataverse, 
+but it will count towards the condition counterbalancing in Firebase. So before collecting real data, 
+delete your test entries from the Firebase Data tab (hover a node, three dots, delete).
