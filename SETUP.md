@@ -9,7 +9,6 @@ loaded onto it, and about an hour of time. Here's the order that works best.
 Create an Excel file with the following values in the first column:
    - `FIREBASE_SERVICE_ACCOUNT_BASE64`
    - `FIREBASE_DATABASE_URL`
-   - `DATAVERSE_COLLECTION_ALIAS`
    - `DATAVERSE_API`
    - `OPENAI_API_KEY`
    - `TOKEN_SECRET`
@@ -61,13 +60,13 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
       - `HOST DATAVERSE`: Keep as "Harvard Dataverse"
       - `DATAVERSE NAME`: Whatever you want the title of this research project to be
         (e.g., "Lonnie's HPL Study Clone")
-      - 
-4. In DataPipe, create an experiment linked to your OSF project. Copy its
-   experiment ID (short code like aB3xY9zQwK).
-5. Create a **second** experiment for consent PDFs, also linked to your OSF project,
-   and turn on "Enable base64 data collection" on its dashboard. Copy that ID too.
-6. In `index.html`, search for REPLACE_WITH and paste the first ID over
-   REPLACE_WITH_YOUR_DATAPIPE_ID and the second over REPLACE_WITH_CONSENT_DATAPIPE_ID.
+      - `DATAVERSE_COLLECTION_ALIAS`: The "short-title" that gets appended to the end of
+        this Datavers's URL. NOTE: You will need this when setting up your DataPipe experiments
+        in the next step
+      - `CATEGORY`: Research Project
+   Everything else is optional and can be left blank or as-is.
+
+3. Create an API Token on Dataverse (click your username the top-right > API Token > Create Token). **Paste this into your Excel spreadsheet next to `DATAVERSE_API`.**
 
 Until you do step 5 the app still runs, it just keeps completed sessions in the
 browser's localStorage instead of uploading them.
