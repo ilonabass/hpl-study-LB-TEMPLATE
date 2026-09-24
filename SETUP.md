@@ -71,8 +71,6 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 ## 4. DataPipe (the intermediary between the study and Dataverse)
 
 1. Make an account at https://pipe.jspsych.org (DataPipe).
-2. Make an account at https://dataverse.harvard.edu/ (Harvard Dataverse).
-3. On Dataverse
 4. In DataPipe, create an experiment linked to your OSF project. Copy its
    experiment ID (short code like aB3xY9zQwK).
 5. Create a **second** experiment for consent PDFs, also linked to your OSF project,
