@@ -2238,7 +2238,7 @@
 // /api/firebase server route. The email duplicate check reads one
 // hashed-email path directly for speed. The database URL is public
 // Firebase config, not a secret.
-// Replace everything inside the "REPLACE ME!" brackets with your Firebase URL:
+// Replace the entire "REPLACE ME!" string, including the brackets, with your Firebase URL:
 const FIREBASE_DATABASE_URL = '[REPLACE ME! Firebase URL]'; // <-- make sure there is no "/" at the end of this URL -- should look something like "https://study-template-default-rtdb.firebaseio.com"
 const EMAIL_HASHES_DIRECT_URL = FIREBASE_DATABASE_URL + '/email_hashes';
 
@@ -2955,7 +2955,7 @@ function formatDateDDMMYYYY(input) {
 // =====================================================
 // DATAPIPE → DATAVERSE (participant data storage)
 // =====================================================
-// To activate uploads, replace everything in the "REPLACE ME!" brackets  
+// To activate uploads, replace the entire "REPLACE ME!" string, including the brackets,  
 // with the Datapipe experiment ID (e.g. should look something like hz6pAcxZd4Xd) 
 // for your main JSON data storage (accept new data, validation ON, no required fields).
 // Until then, every completion is saved to localStorage as a safety
@@ -3520,7 +3520,7 @@ function discardSnapshotAndStartFresh() {
 // =====================================================
 // CONSENT PDF — generate at consent submission, upload to Dataverse
 // =====================================================
-// To complete setup, replace everything in the "REPLACE ME!" brackets  
+// To complete setup, replace the entire "REPLACE ME!" string, including the brackets,   
 // with the Datapipe experiment ID for your consent storage  
 // (accept new data, accept Base64 files, validation OFF).
 // Until then, every completion is saved to localStorage as a safety
@@ -3690,7 +3690,7 @@ async function captureConsentPDF(completedAt) {
 // same localStorage backup + retry pattern as the consent
 // PDF so transient network failures recover on next load.
 //     
-// To complete setup, replace everything in the "REPLACE ME!" brackets  
+// To complete setup, replace the entire "REPLACE ME!" string, including the brackets,  
 // with the Datapipe experiment ID for your XLSX storage  
 // (accept new data, accept Base64 files, validation OFF).
 // Until then, every completion is saved to localStorage as a safety
@@ -4714,7 +4714,7 @@ async function readEmailHashDirectly(hash) {
 // hashes. The full email list lives only on the private Dataverse
 // collection, which requires a Dataverse login to access.
 //
-// To complete setup, replace everything in the "REPLACE ME!" brackets  
+// To complete setup, replace the entire "REPLACE ME!" string, including the brackets,  
 // with the Datapipe experiment ID for your email storage  
 // (accept new data, accept Base64 files, validation OFF).
 // Until then, every completion is saved to localStorage as a safety
