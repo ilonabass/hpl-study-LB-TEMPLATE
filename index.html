@@ -2956,7 +2956,7 @@ function formatDateDDMMYYYY(input) {
 // DATAPIPE → DATAVERSE (participant data storage)
 // =====================================================
 // To activate uploads, replace everything in the "REPLACE ME!" brackets  
-// with the Datapipe experiment ID (e.g. should look something like hz6dAcvZd1Xd) 
+// with the Datapipe experiment ID (e.g. should look something like hz6pAcxZd4Xd) 
 // for your main JSON data storage (accept new data, validation ON, no required fields).
 // Until then, every completion is saved to localStorage as a safety
 // net — no participant data will be lost.
@@ -3213,7 +3213,7 @@ async function fetchWithRetry(url, options, tries = 4) {
 }
 
 async function sendToDataPipe(payload) {
-  if (!DATAPIPE_EXPERIMENT_ID || DATAPIPE_EXPERIMENT_ID === '[REPLACE ME! Datapipe Experiment ID]') { // <-- DON'T replace this "REPLACE ME" string with your Datapipe experiment ID -- this is checking to make sure you actually updated the value from the default template string
+  if (!DATAPIPE_EXPERIMENT_ID || DATAPIPE_EXPERIMENT_ID === '[REPLACE ME! Datapipe Main Experiment ID]') { // <-- DON'T replace this "REPLACE ME" string with your Datapipe experiment ID -- this is checking to make sure you actually updated the value from the default template string
     console.warn('DataPipe ID not configured — data only saved locally.');
     return false;
   }
@@ -5155,16 +5155,16 @@ function afterExpLessonRoute() {
 // =====================================================
 // TIME GATES (generic, used by framing + lesson)
 // =====================================================
-// const GATE_CONFIG = {
-//   framing: { seconds: 30, passed: false, interval: null },
-//   lesson:  { seconds: 90, passed: false, interval: null }
-// };
+const GATE_CONFIG = {
+  framing: { seconds: 30, passed: false, interval: null },
+  lesson:  { seconds: 90, passed: false, interval: null }
+};
 
 // for testing:
-const GATE_CONFIG = {
-  framing: { seconds: 0, passed: false, interval: null },
-  lesson:  { seconds: 0, passed: false, interval: null }
-};
+// const GATE_CONFIG = {
+//   framing: { seconds: 0, passed: false, interval: null },
+//   lesson:  { seconds: 0, passed: false, interval: null }
+// };
 
 function startGate(name) {
   const cfg = GATE_CONFIG[name];
