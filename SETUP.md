@@ -42,6 +42,7 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 }
 ```
    Then publish.
+   
 4. Gear icon -> Project settings -> Service accounts -> Generate new private key.
    This will download a .json file. 
 5. Turn that file into one long line of text. On a Mac:
