@@ -1,13 +1,13 @@
 import { applyCors, readJson } from '../lib/auth.js';
 
-// First-party proxy to DataPipe/OSF.
+// First-party proxy to DataPipe/Dataverse.
 //
 // The browser POSTs here — SAME ORIGIN as the study — and this forwards the
 // request to pipe.jspsych.org server-side. Because the participant's browser
 // only ever talks to hpl-study.xyz (never the third-party DataPipe domain),
 // ad-blockers, privacy browsers, and school/corporate firewalls that block
 // pipe.jspsych.org no longer break participant uploads. Your Vercel server —
-// which has no ad-blocker — relays the payload to OSF.
+// which has no ad-blocker — relays the payload to Dataverse.
 //
 // No auth token is required. This is a thin relay to DataPipe, which is
 // already openly writable by anyone holding the (non-secret) experiment IDs
@@ -20,7 +20,7 @@ import { applyCors, readJson } from '../lib/auth.js';
 //
 // Body is forwarded verbatim: { experimentID, filename, data }. The upstream
 // status and body are mirrored back unchanged, so the client's success and
-// OSF_FILE_EXISTS (duplicate = already stored) detection behave exactly as
+// FILE_EXISTS (duplicate = already stored) detection behave exactly as
 // they did when posting to DataPipe directly.
 
 const DATAPIPE_DATA_URL = 'https://pipe.jspsych.org/api/data/';
