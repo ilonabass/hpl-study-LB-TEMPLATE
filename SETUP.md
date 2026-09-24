@@ -1,10 +1,23 @@
 # Getting this study running
 
 The code in this repo is complete but not connected to anything yet. You need three
-free accounts (Firebase, Vercel, OSF/DataPipe) and about an hour. Here's the order
-that works best.
+free accounts (Firebase, Vercel, DataPipe/Dataverse), an OpenAI API key with a few dollars
+loaded onto it, and about an hour of time. Here's the order that works best.
 
-## 1. Firebase (the study's database)
+## 1. Create a temporary local file for storing keys
+
+Create an Excel file with the following values in the first column:
+   - `FIREBASE_SERVICE_ACCOUNT_BASE64`
+   - `FIREBASE_DATABASE_URL`
+   - `DATAVERSE_COLLECTION_ALIAS`
+   - `DATAVERSE_API`
+   - `OPENAI_API_KEY`
+   - `TOKEN_SECRET`
+
+This is just for keeping track of these values temporarily as they're generated.
+DO NOT EVER upload / share these values anywhere else.
+
+## 2. Firebase (the study's database)
 
 This stores participant IDs, condition assignments, and the shared chatbot cache.
 
@@ -12,30 +25,62 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 2. In the left menu: Build -> Realtime Database -> Create database. Pick a US region
    and start in **locked mode**. Important: it has to be Realtime Database, not
    Firestore. They look similar in the menu but the code only talks to Realtime.
-3. Rules tab: leave it locked (`".read": false, ".write": false`) and publish.
-   Looks wrong, is right. Participants never touch the database directly, only the
-   server does, and the server uses an admin key that skips the rules.
+3. In the rules tab:
+
+```json
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "email_hashes": {
+      "$hash": {
+        ".read": true,
+        ".write": false
+      }
+    }
+  }
+}
+```
+   Then publish.
 4. Gear icon -> Project settings -> Service accounts -> Generate new private key.
-   A .json file downloads. Treat it like a password.
+   This will download a .json file. 
 5. Turn that file into one long line of text. On a Mac:
-   `base64 -i ~/Downloads/yourfile.json | pbcopy` (now it's on your clipboard).
+   `base64 -i ~/Downloads/yourfile.json | pbcopy` (this "converts" the entire contents 
+   of the .json file into a single string, and saves it to your clipboard.) 
+   **Paste this into your Excel spreadsheet next to `FIREBASE_SERVICE_ACCOUNT_BASE64`.**
 6. Copy your database URL from the top of the Data tab. It looks like
-   https://yourproject-default-rtdb.firebaseio.com
-7. Paste that URL into the one spot in `index.html` marked with the placeholder
-   (search for YOUR-PROJECT to find it).
+   https://yourproject-default-rtdb.firebaseio.com. **Paste this into your Excel**
+   **spreadsheet next to `FIREBASE_DATABASE_URL`.** 
+   NOTE: Make sure the URL DOES NOT have a "/" at the end.
 
-You don't create any tables. They appear on their own the first time the app writes.
+## 3. Dataverse (where the final data files land)
 
-## 2. OSF + DataPipe (where the final data files land)
-
-1. Make an account at https://osf.io and create a private project for the study.
-2. Make an account at https://pipe.jspsych.org (DataPipe) and connect it to OSF
-   when it asks.
-3. In DataPipe, create an experiment linked to your OSF project. Copy its
+1. Make an account at https://dataverse.harvard.edu/ (Harvard Dataverse).
+2. Create a "Dataverse" (Add Data > New Dataverse)
+      - `HOST DATAVERSE`: Keep as "Harvard Dataverse"
+      - `DATAVERSE NAME`: Whatever you want the title of this research project to be
+        (e.g., "Lonnie's HPL Study Clone")
+      - 
+4. In DataPipe, create an experiment linked to your OSF project. Copy its
    experiment ID (short code like aB3xY9zQwK).
-4. Create a **second** experiment for consent PDFs, also linked to your OSF project,
+5. Create a **second** experiment for consent PDFs, also linked to your OSF project,
    and turn on "Enable base64 data collection" on its dashboard. Copy that ID too.
-5. In `index.html`, search for REPLACE_WITH and paste the first ID over
+6. In `index.html`, search for REPLACE_WITH and paste the first ID over
+   REPLACE_WITH_YOUR_DATAPIPE_ID and the second over REPLACE_WITH_CONSENT_DATAPIPE_ID.
+
+Until you do step 5 the app still runs, it just keeps completed sessions in the
+browser's localStorage instead of uploading them.
+
+## 4. DataPipe (the intermediary between the study and Dataverse)
+
+1. Make an account at https://pipe.jspsych.org (DataPipe).
+2. Make an account at https://dataverse.harvard.edu/ (Harvard Dataverse).
+3. On Dataverse
+4. In DataPipe, create an experiment linked to your OSF project. Copy its
+   experiment ID (short code like aB3xY9zQwK).
+5. Create a **second** experiment for consent PDFs, also linked to your OSF project,
+   and turn on "Enable base64 data collection" on its dashboard. Copy that ID too.
+6. In `index.html`, search for REPLACE_WITH and paste the first ID over
    REPLACE_WITH_YOUR_DATAPIPE_ID and the second over REPLACE_WITH_CONSENT_DATAPIPE_ID.
 
 Until you do step 5 the app still runs, it just keeps completed sessions in the
