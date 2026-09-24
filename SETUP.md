@@ -109,7 +109,7 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
          - Turn on "Accept base64 file uploads"
          - Turn OFF "Validation"
       
-   No other changes should be required here.
+   No other changes should be necessary.
 
 6. Once all four experiments are created, locate their experiment IDs (under "Experiment details"
    for each experiment -- should be a short code like hz6pAcxZd4Xd).
@@ -123,7 +123,13 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 
 ## 6. Edit `index.html` (connects this repo to your study-specific information)
 
-1. Open index.html
+In the `index.html` file in your copy of this repo, replace the following values:
+-  `[REPLACE ME! Researcher Name]`: Replace with your first and last name. Occurs 5 times.
+-  `[REPLACE ME! Researcher Name]`: Replace with your email address Occurs 7 times.
+-  `[REPLACE ME! Firebase URL]`: Replace with the URL in your Excel spreadsheet next to `FIREBASE_DATABASE_URL`. **Make sure there's no "/" at the end!** Occurs 1 time.
+-  `[REPLACE ME! Datapipe Main Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE MAIN EXPERIMENT ID`. Occurs 1 time-  `[REPLACE ME! Datapipe Consent Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE CONSENT EXPERIMENT ID`. Occurs 1 time-  `[REPLACE ME! Datapipe XLSX Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE XLSX EXPERIMENT ID`. Occurs 1 time-  `[REPLACE ME! Datapipe Email Experiment ID]`: Replace with the experiment ID in your Excel spreadsheet next to `DATAPIPE EMAIL EXPERIMENT ID`. Occurs 1 time.
+
+For all of these, replace the entire bracketed string, including the brackets themselves.
 
 ## 3. Vercel (puts it on the internet)
 
