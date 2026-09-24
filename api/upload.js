@@ -4,7 +4,7 @@ import { applyCors, readJson } from '../lib/auth.js';
 //
 // The browser POSTs here — SAME ORIGIN as the study — and this forwards the
 // request to pipe.jspsych.org server-side. Because the participant's browser
-// only ever talks to hpl-study.xyz (never the third-party DataPipe domain),
+// only ever talks to the Vercel site (never the third-party DataPipe domain),
 // ad-blockers, privacy browsers, and school/corporate firewalls that block
 // pipe.jspsych.org no longer break participant uploads. Your Vercel server —
 // which has no ad-blocker — relays the payload to Dataverse.
