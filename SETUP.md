@@ -18,8 +18,7 @@ Create an Excel file with the following values in the first column:
    - `DATAPIPE XLSX EXPERIMENT ID`
    - `DATAPIPE EMAIL EXPERIMENT ID`
    
-This is just for keeping track of these values temporarily as they're generated.
-DO NOT EVER upload / share these values anywhere else.
+This is just for keeping track of these values temporarily as they're generated. **No API key, secret, or service credential is ever placed in `index.html`, any other client-side file, or any committed file in this repo. Ever.**
 
 ## 2. Firebase (the study's database)
 
@@ -159,7 +158,8 @@ Once you've made all of these replacements, commit changes.
 
 Open your URL and run through the whole study once like a participant. Then check:
 your Firebase Data tab should show a participant counter and session data, and each of your four 
-Dataverse collections should have one new file in them. If everything is there, you're done!
+Dataverse collections should have one new file in them. If everything is there, you're done! 
+For security, you should now delete the Excel file that has been storing all your secret key information.
 
 NOTE: DataPipe is sometimes slow to send data to Dataverse. If you still don't see anything after a day or so, try disconnecting and re-connecting DataPipe and Dataverse using a freshly generated Dataverse API Token. 
 
