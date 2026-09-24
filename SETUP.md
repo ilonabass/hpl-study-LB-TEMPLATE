@@ -68,9 +68,6 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 
 3. Create an API Token on Dataverse (click your username the top-right > API Token > Create Token). **Paste this into your Excel spreadsheet next to `DATAVERSE_API`.**
 
-Until you do step 5 the app still runs, it just keeps completed sessions in the
-browser's localStorage instead of uploading them.
-
 ## 4. DataPipe (the intermediary between the study and Dataverse)
 
 1. Make an account at https://pipe.jspsych.org (DataPipe).
