@@ -148,7 +148,7 @@ NOTE: All of the content of the template study is HPL-specific. Poke around the 
    - `FIREBASE_DATABASE_URL` - the Firebase URL
    - `OPENAI_API_KEY` - the OpenAI API secret key
    - `TOKEN_SECRET` - any random string, 32+ characters (you never need to
-     remember it); e.g. can make one one https://numbergenerator.org/random-32-digit-number-generator
+     remember it); e.g. can make one on https://numbergenerator.org/random-32-digit-number-generator
 
    There are also a few optional ones you probably won't need: `ALLOWED_ORIGINS`
    (only if another domain needs to call the API), `PER_IP_TOKEN_LIMIT` (default
