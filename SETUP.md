@@ -1,3 +1,5 @@
+**The original HPL study was created by Blerim Jasahri.** This template version with more detailed instructions was copied from Blerim's study by Ilona Bass.
+
 # Getting this study running
 
 The code in this repo is complete but not connected to anything yet. You need five
