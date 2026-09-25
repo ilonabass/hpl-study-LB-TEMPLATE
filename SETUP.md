@@ -65,7 +65,7 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
       - **Dataverse Name**: Whatever you want the title of this research project to be
         (e.g., "Lonnie's HPL Study Clone")
       - **Identifier**: The "short-title" that gets appended to the end of
-        this Datavers's URL (e.g., "hpl-study-lb"). NOTE: You will need this when
+        this Dataverse's URL (e.g., "hpl-study-lb"). NOTE: You will need this when
         setting up your DataPipe experiments in the next step.
       - **Category**: Research Project
    Everything else is optional and can be left blank or as-is.
@@ -77,7 +77,7 @@ This stores participant IDs, condition assignments, and the shared chatbot cache
 1. Make an account at https://pipe.jspsych.org (DataPipe), using
    whatever sign-in method you prefer (email, Google, GitHub, etc.).
 2. Link your DataPipe account to Dataverse (Account > Settings > Dataverse > Connect)
-     - **Dataverse Server URL***: https://dataverse.harvard.edu/
+     - **Dataverse Server URL**: https://dataverse.harvard.edu/
      - **API Token**: The value you pasted in your Excel spreadsheet under `DATAVERSE_API_TOKEN`.
        (Can also be re-accessed on your Dataverse account, though you should not need this
        token again after this point.)
@@ -134,13 +134,13 @@ In the `index.html` file in your copy of this repo, replace the following values
 
 For all of these, replace the entire bracketed string, including the brackets themselves.
 
-Once you've made all of these replacements, commit changes.
+Once you've made all of these replacements, commit changes. You can also edit the study-specific information in `package.json`.
 
-NOTE: All of the content of the template study is HPL-specific. Edit the study content for your task or experiment.
+NOTE: All of the content of the template study is HPL-specific. Poke around the entire repo and edit all study content to work for your task or experiment.
 
 ## 7. Vercel (puts it on the internet)
 
-1. Make an account at https://vercel.com with "Continue with GitHub". Link the GitHub account the houses this repo.
+1. Make an account at https://vercel.com with "Continue with GitHub". Link the GitHub account that houses this repo.
 2. Add New -> Project -> import this repo. Because this repo is private, you may have to click "Adjust GitHub App Permissions" and expressly allow access to this repo. Do not change any build settings for the project on Vercel.
 3. Before hitting Deploy, add these environment variables (should be logged in your Excel spreadsheet):
 
