@@ -25,7 +25,7 @@ This is just for keeping track of these values temporarily as they're generated.
 This stores participant IDs, condition assignments, and the shared chatbot cache.
 
 1. Go to https://console.firebase.google.com and add a project (any name).
-2. In the left menu: Build -> Realtime Database -> Create database. Pick a US region
+2. In the left menu: Build > Realtime Database > Create database. Pick a US region
    and start in **locked mode**. Important: it has to be Realtime Database, not
    Firestore. They look similar in the menu but the code only talks to Realtime.
 3. In the rules tab:
@@ -141,7 +141,7 @@ NOTE: All of the content of the template study is HPL-specific. Poke around the 
 ## 7. Vercel (puts it on the internet)
 
 1. Make an account at https://vercel.com with "Continue with GitHub". Link the GitHub account that houses this repo.
-2. Add New -> Project -> import this repo. Because this repo is private, you may have to click "Adjust GitHub App Permissions" and expressly allow access to this repo. Do not change any build settings for the project on Vercel.
+2. Add New > Project > import this repo. Because this repo is private, you may have to click "Adjust GitHub App Permissions" and expressly allow access to this repo. Do not change any build settings for the project on Vercel.
 3. Before hitting Deploy, add these environment variables (should be logged in your Excel spreadsheet):
 
    - `FIREBASE_SERVICE_ACCOUNT_BASE64` - a super long string
